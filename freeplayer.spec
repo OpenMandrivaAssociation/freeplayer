@@ -1,6 +1,6 @@
 %define name freeplayer
-%define version 20050905
-%define release %mkrel 0.14
+%define version 20070531
+%define release %mkrel 0.1
 %define aname vlc-fbx
 %define bname fbx-playlist
 %define longtitle Create Playlist for Freeplayer
@@ -10,12 +10,11 @@
 Name:      %{name}
 Version:   %{version}
 Release:   %{release}
-Summary:   Freeplayer from french isp free adsl
+Summary:   Freeplayer from french isp Free ADSL
 License:   GPL
 URL:       http://faq.free.fr/adsl/Decouvrir_les_services/Freebox_TV/Options_supplementaires/FreePlayer
 Group:     Video
-Source0:   ftp://ftp.free.fr/pub/%{name}/%{name}-linux-%{version}.tar.bz2
-Patch0:    freeplayer-20050905-playlist.patch
+Source0:   ftp://ftp.free.fr/pub/%{name}/%{name}-linux-%{version}.tgz
 Source1:   vlc-fbx.init
 Source2:   vlc-fbx.sysconfig
 Source3:  freeplayer-images.tar.bz2
@@ -30,35 +29,34 @@ Requires: freeplayer-mod
 Requires: freeplayer-common
 
 %description
-Freeplayer from french isp free adsl
+Freeplayer from french isp Free ADSL
 
 
 %package data
 Group: 		Video
 License: 	GPL
-Summary: 	Freeplayer from french isp free adsl
+Summary: 	Freeplayer from french isp Free ADSL
 Provides: freeplayer-mod
 Provides: freeplayer-data = %{version}
 Requires: freeplayer-common
 
 %description data
-Freeplayer from french isp free adsl default mod
+Freeplayer from french isp Free ADSL default mod
 
 %package common
 Group: 		Video
 License: 	GPL
-Summary: 	Freeplayer from french isp free adsl
+Summary: 	Freeplayer from french isp Free ADSL
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 
 %description common
-Freeplayer from french isp free adsl default mod
+Freeplayer from french isp Free ADSL default mod
 
 %prep
 rm -rf %buildroot
 
 %setup -n %{name} -q
-%patch0 -p1 -b .playlist
 
 tar xzf share/fbx-playlist-%{playlist_version}.tar.gz
 /usr/bin/bzip2 -dc %{SOURCE3} | tar -xf -
@@ -66,6 +64,8 @@ tar xzf share/fbx-playlist-%{playlist_version}.tar.gz
 %build
 cd fbx-playlist-%{playlist_version}
 /usr/lib/qt4/bin/qmake
+#qmake is dropping quotes, restoring them
+sed -i -e 's/VERSION="1.1"/VERSION=\\"1.1\\"/g' Makefile
 make
 
 
