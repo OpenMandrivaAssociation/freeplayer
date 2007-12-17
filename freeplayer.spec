@@ -22,7 +22,6 @@ Source3:  freeplayer-images.tar.bz2
 Source10:  %{name}-16.png
 Source11:  %{name}-32.png
 Source12:  %{name}-48.png
-BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires: qt4-devel
 Requires: vlc >= 0.8.4
 Requires: freeplayer-mod
