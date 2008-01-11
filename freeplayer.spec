@@ -82,16 +82,6 @@ install -m 755 fbx-playlist-%{playlist_version}/fbx-playlist -D %buildroot/%_bin
 sed -i -e 's@%HTTP_PATH%@/usr/share/freeplayer/http-fbx/@g' %buildroot/%_bindir/%{aname}
 
 #menus
-install -d %buildroot/%{_menudir}
-cat <<EOF >%buildroot/%{_menudir}/%{name}
-?package(%{name}):command="%{_bindir}/%{bname}" \
-                  icon=%{name}.png \
-                  needs="x11" \
-                  section="Multimedia/Video" \
-                  title="%{title}"\
-                  longtitle="%{longtitle}"\
-		  xdg="true"		
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -129,7 +119,6 @@ rm -rf %buildroot
 %defattr(-,root,root)
 %doc README share/doc/*
 %_bindir/*
-%_menudir/*
 %_iconsdir/*.png
 %_liconsdir/*.png
 %_miconsdir/*.png
