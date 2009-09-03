@@ -1,6 +1,6 @@
 %define name freeplayer
 %define version 20070531
-%define release %mkrel 0.1
+%define release %mkrel 0.2
 %define aname vlc-fbx
 %define bname fbx-playlist
 %define longtitle Create Playlist for Freeplayer
