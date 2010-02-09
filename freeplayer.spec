@@ -1,6 +1,6 @@
 %define name freeplayer
 %define version 20070531
-%define release %mkrel 0.2
+%define release %mkrel 0.3
 %define aname vlc-fbx
 %define bname fbx-playlist
 %define longtitle Create Playlist for Freeplayer
@@ -22,6 +22,7 @@ Source3:  freeplayer-images.tar.bz2
 Source10:  %{name}-16.png
 Source11:  %{name}-32.png
 Source12:  %{name}-48.png
+Patch0:    freeplayer-fix-vlc-args.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires: qt4-devel
 Requires: vlc >= 0.8.4
@@ -66,8 +67,8 @@ cd fbx-playlist-%{playlist_version}
 /usr/lib/qt4/bin/qmake
 #qmake is dropping quotes, restoring them
 sed -i -e 's/VERSION="1.1"/VERSION=\\"1.1\\"/g' Makefile
+sed -i -e 's///g' license.ui
 make
-
 
 %install
 mkdir -p %buildroot/%_datadir/%{name}
