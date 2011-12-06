@@ -80,7 +80,7 @@ install -m 644 %{SOURCE2} %buildroot/%_sysconfdir/sysconfig/vlc-fbx
 cp -r share/http-fbx %buildroot/%_datadir/%{name}
 install -m 755 bin/vlc-fbx.sh -D %buildroot/%_bindir/%{aname}
 install -m 755 fbx-playlist-%{playlist_version}/fbx-playlist -D %buildroot/%_bindir/%{bname}
-sed -i -e 's@%HTTP_PATH%@/usr/share/freeplayer/http-fbx/@g' %buildroot/%_bindir/%{aname}
+sed -i -e 's^%HTTP_PATH%^/usr/share/freeplayer/http-fbx/^g' %buildroot/%_bindir/%{aname}
 
 #menus
 
