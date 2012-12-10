@@ -138,3 +138,110 @@ rm -rf %buildroot
 %config(noreplace) %_sysconfdir/sysconfig/vlc-fbx
 %_sysconfdir/init.d/vlc-fbx
 
+
+
+%changelog
+* Tue Dec 06 2011 Götz Waschk <waschk@mandriva.org> 20070531-0.5mdv2012.0
++ Revision: 738184
+- fix sed command
+- yearly rebuild
+
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 20070531-0.4mdv2011.0
++ Revision: 610768
+- rebuild
+
+* Wed Feb 10 2010 Guillaume Rousse <guillomovitch@mandriva.org> 20070531-0.3mdv2010.1
++ Revision: 503481
+- fix VLC args
+- fix build
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Thu Jun 12 2008 Pixel <pixel@mandriva.com> 20070531-0.1mdv2009.0
++ Revision: 218423
+- rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - drop old menu
+    - kill re-definition of %%buildroot on Pixel's request
+    - kill desktop-file-validate's 'warning: key "Encoding" in group "Desktop Entry" is deprecated'
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Sun Jun 03 2007 Frederic Crozat <fcrozat@mandriva.com> 20070531-0.1mdv2008.0
++ Revision: 34838
+- Release 20070531
+- Remove patch0, merged upstream
+
+
+* Fri Aug 11 2006 Emmanuel Andry <eandry@mandriva.org> 20050905-0.14mdv2007.0
+- statically set qt4 to /usr/lib/qt4/bin/qmake to fix x86_64 build (strange, I know)
+
+* Fri Jun 23 2006 Jerome Martin <jmartin@mandriva.org> 20050905-0.13mdv2007.0
+- xdg menu
+- Fix url
+- Fix missing images
+
+* Sun Jun 04 2006 Jerome Martin <jmartin@mandriva.org> 20050905-0.12mdk
+- Split common and data for other mod
+- Fix require
+
+* Wed May 10 2006 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.11mdk
+- Drop the "base" package, rename it back freeplayer, there is no
+  need to call it "base"
+- Fix initscript and sysconfig file to use "daemon" user and allow
+  easy change by user (Mdk bug #22200)
+- Move initscript into freeplayer-data package, they can be used without
+  main freeplayer package
+
+* Fri Apr 07 2006 Jerome Martin <jmartin@mandriva.org> 20050905-0.10mdk
+- Fixed rpmlint errors
+
+* Sun Mar 19 2006 Jerome Martin <jerome.f.martin@free.fr> 20050905-0.9mdk
+- Separate common part
+
+* Mon Feb 06 2006 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.8mdk
+- fix restart in initscript
+- allow to configure port for vlc http server
+
+* Mon Jan 09 2006 Olivier Blin <oblin@mandriva.com> 20050905-0.7mdk
+- fix typo in initscript
+
+* Mon Jan 09 2006 Olivier Blin <oblin@mandriva.com> 20050905-0.6mdk
+- convert parallel init to LSB
+
+* Tue Jan 03 2006 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.5mdk
+- Update source2 to support parallel initscript
+
+* Wed Dec 14 2005 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.4mdk
+- Fix build on x86-64 (Mdk bug #20199)
+
+* Tue Oct 04 2005 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.3mdk
+- Enforce dependency on vlc >= 0.8.4
+- Add initscript for people who don't want to use X11 vlc
+
+* Mon Sep 05 2005 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.2mdk 
+- Fix http-fbx path
+
+* Mon Sep 05 2005 Frederic Crozat <fcrozat@mandriva.com> 20050905-0.1mdk 
+- Release 20050905
+- Regenerate patch0
+
+* Thu Jul 07 2005 Frederic Crozat <fcrozat@mandriva.com> 20050701-0.4mdk 
+- Arg, install compiled version of fbx-playlist
+
+* Wed Jul 06 2005 Frederic Crozat <fcrozat@mandriva.com> 20050701-0.3mdk 
+- Remove dependency on transcode (not needed, vlc does the job)
+- Patch0 : allow many playlists to be used as argument for vlc-fbx scripts,
+  merge previous patches 0 and 1 in it.
+- Clean specfile
+- Drop menu for vlc-fbx, can't be used that way (yet)
+
+* Sat Jul 02 2005 Sebastien Savarin <plouf@mandriva.org> 20050701-0.2mdk
+- Spec file corrections
+
+* Fri Jul 01 2005 Sebastien Savarin <plouf@mandriva.org> 20050701-0.1mdk
+- First Mandriva Linux release
+

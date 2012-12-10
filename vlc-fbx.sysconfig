@@ -1,0 +1,14 @@
+# used to change daemon options, such as nice level
+# DAEMON_OPTS="-5"
+
+# used to change Freeplayer html files location
+# HTTP_FBX="/usr/share/freeplayer/http-fbx"
+
+# used to change port for VLC http server
+# FREEPLAYER_PORT=8080
+
+# used to add more options to vlc
+# VLC_OPTS="--rt-priority"
+
+# system user used to start vlc
+# VLC_FBX_USER="daemon"

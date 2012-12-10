@@ -1,0 +1,86 @@
+#!/bin/sh
+# chkconfig: 35 90 10
+# processname: vlc
+# description: VLC-Freeplayer
+# processname: vlc
+# config: /etc/sysconfig/vlc-fbx
+# pidfile: /var/run/vlc-fbx.pid
+#
+### BEGIN INIT INFO
+# Provides: vlc-fbx
+# Required-Start: $network
+# Required-Stop: $network
+# Default-Start: 3 5
+# Short-Description: VLC-Freeplayer
+# Description: VLC-Freeplayer
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+
+RETVAL=0
+
+[ -r /etc/sysconfig/vlc-fbx ] && . /etc/sysconfig/vlc-fbx
+
+[ "$HTTP_FBX" ] || HTTP_FBX="/usr/share/freeplayer/http-fbx"
+
+[ "$FREEPLAYER_PORT" ] || FREEPLAYER_PORT="8080"
+
+[ "$VLC_FBX_USER" ] || VLC_FBX_USER="daemon"
+
+start() {
+	gprintf "Starting VLC Freeplayer: "
+	unset DISPLAY
+	daemon $DAEMON_OPTS --user $VLC_FBX_USER --check vlc-fbx /usr/bin/vlc --intf http --http-host=:$FREEPLAYER_PORT --http-charset=ISO-8859-1 --sout='#std' --sout-standard-access=udp --sout-standard-mux=ts --sout-standard-url=212.27.38.253:1234 --sout-ts-pid-video=68 --sout-ts-pid-audio=69 --sout-ts-pid-spu=70 --sout-ts-pcr=80 --sout-ts-dts-delay=400 --no-playlist-autostart --subsdec-encoding=ISO-8859-1 --sout-transcode-maxwidth=720 --sout-transcode-maxheight=576 --http-src=$HTTP_FBX --config="~/.vlc/vlcrc-fbx" --play-and-stop --daemon $VLC_OPTS
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ]; then
+		PID=`/sbin/pidof vlc`
+		if [ $PID ]; then
+	   		touch /var/lock/subsys/vlc-fbx && echo $PID > /var/run/vlc-fbx.pid
+                else
+	                failure
+        	fi
+        fi
+        echo
+}
+
+stop() {
+	gprintf "Stopping VLC Freeplayer: "
+	killproc vlc-fbx 
+	RETVAL=$?
+	echo 
+	if [ $RETVAL = 0 ]; then
+	    rm -f /var/lock/subsys/vlc-fbx
+	    rm -f /var/run/vlc-fbx.pid
+	    success 
+	else
+	    failure
+	fi
+}
+
+case $1 in 
+    start)
+    	start
+	;;
+
+    stop)
+    	stop
+	;;
+
+    restart)
+        stop
+	start
+	;;
+
+    status)
+	status vlc
+	;;
+
+    *)
+	gprintf "Usage: %s\n" "$(basename $0) {start|stop|restart|status}"
+	exit 0
+	;;
+esac
+
+exit $RETVAL
