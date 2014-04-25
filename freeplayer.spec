@@ -1,3 +1,9 @@
+# can not trace the  homepage symbianflo
+# last commit :01/06/07
+# eventually to be flagged as dead project
+
+
+
 %define debug_package	%{nil}
 
 %define name freeplayer
