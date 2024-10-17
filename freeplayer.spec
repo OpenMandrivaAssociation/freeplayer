@@ -12,7 +12,7 @@ Version:   %{version}
 Release:   %{release}
 Summary:   Freeplayer from french isp Free ADSL
 License:   GPL
-URL:       http://faq.free.fr/adsl/Decouvrir_les_services/Freebox_TV/Options_supplementaires/FreePlayer
+URL:       https://faq.free.fr/adsl/Decouvrir_les_services/Freebox_TV/Options_supplementaires/FreePlayer
 Group:     Video
 Source0:   ftp://ftp.free.fr/pub/%{name}/%{name}-linux-%{version}.tgz
 Source1:   vlc-fbx.init
